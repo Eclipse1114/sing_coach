@@ -9,12 +9,15 @@ st.set_page_config(
 )
 
 
-def evaluate_vocal_take(audio_file_path: str) -> str:
+def evaluate_vocal_take(audio_file_path: str, mime_type: str = None) -> str:
   """Uploads the track to Gemini and runs it against the anti-robot mentor prompt."""
   client = genai.Client()
 
+  # Pass mime_type explicitly to prevent MIME type rejection errors
+  upload_config = {"mime_type": mime_type} if mime_type else None
+
   with open(audio_file_path, "rb") as f:
-    audio_file = client.files.upload(file=f)
+    audio_file = client.files.upload(file=f, config=upload_config)
 
   system_prompt = (
       "You are an elite, counter-culture vocal producer and performance coach "
@@ -34,7 +37,7 @@ def evaluate_vocal_take(audio_file_path: str) -> str:
   )
 
   response = client.models.generate_content(
-      model="gemini-2.5-flash", contents=[audio_file, system_prompt]
+      model="gemini-3.5-flash", contents=[audio_file, system_prompt]
   )
 
   # Clean up the file from Google's servers right after generating
@@ -82,18 +85,20 @@ if audio_to_process is not None:
   ):
     with st.spinner("Listening for soul and grit..."):
       # Determine file extension safely
-      suffix = os.path.splitext(getattr(audio_to_process, "name", "recording.wav"))[
-          1
-      ]
+      file_name = getattr(audio_to_process, "name", "recording.wav")
+      suffix = os.path.splitext(file_name)[1]
       if not suffix:
         suffix = ".wav"
+
+      # Capture browser-provided MIME type (e.g., 'audio/wav', 'audio/mp3', etc.)
+      file_mime_type = getattr(audio_to_process, "type", None)
 
       with tempfile.NamedTemporaryFile(delete=False, suffix=suffix) as tmp:
         tmp.write(audio_to_process.getvalue())
         temp_path = tmp.name
 
       try:
-        feedback = evaluate_vocal_take(temp_path)
+        feedback = evaluate_vocal_take(temp_path, mime_type=file_mime_type)
         st.markdown("---")
         st.subheader("Producer's Notes")
         st.write(feedback)
