@@ -63,9 +63,10 @@ with tab_record:
     audio_to_process = recorded_audio
 
 with tab_upload:
-  st.write("Or choose an existing audio file from your device:")
+  st.write("Or choose an existing audio or video file from your device:")
   uploaded_file = st.file_uploader(
-      "Choose an audio file", type=["mp3", "wav", "m4a", "aac"]
+      "Choose an audio or video file", 
+      type=["mp3", "wav", "m4a", "aac", "mp4", "mov", "avi"]
   )
   if uploaded_file is not None:
     audio_to_process = uploaded_file
