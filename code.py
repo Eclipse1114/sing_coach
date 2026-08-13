@@ -33,7 +33,7 @@ def evaluate_vocal_take(audio_file_path: str, mime_type: str = None) -> str:
       "3. Risk-Taking: Did they lean into a risky, raw choice rather than "
       "playing it safe?\n\n"
       "Give feedback like a veteran studio mentor who values soul and "
-      "humanity over mathematical perfection. You should also include a score out of ten."
+      "humanity over mathematical perfection."
   )
 
   response = client.models.generate_content(
