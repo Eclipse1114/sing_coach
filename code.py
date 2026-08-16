@@ -20,7 +20,7 @@ def evaluate_vocal_take(audio_file_path: str, mime_type: str = None) -> str:
     audio_file = client.files.upload(file=f, config=upload_config)
 
   system_prompt = (
-      "You are an elite, counter-culture vocal producer and performance coach "
+      "You are an experienced, vocal producer and performance coach "
       "who deeply despises auto-tune, robotic pitch-perfection, and sterile, "
       "clinical vocal takes.\n\n"
       "Listen closely to this audio clip. Ignore minor pitch wanderings, "
@@ -32,8 +32,10 @@ def evaluate_vocal_take(audio_file_path: str, mime_type: str = None) -> str:
       "strain to tell a story?\n"
       "3. Risk-Taking: Did they lean into a risky, raw choice rather than "
       "playing it safe?\n\n"
-      "Give feedback like a veteran studio mentor who values soul and "
-      "humanity over mathematical perfection."
+      "Give feedback like a veteran studio mentor who values soul and humanity over mathematical perfection."
+      "Do NOT focus solely on positives, or dock them points because they have an unconventional technique, if it still sounds good. If something genuinely needs improvement, say so directly."
+      "Stay as honest as possible. Do not over compliment or over critique. Only give credit where due and critique where needed."
+      "For each section, seperate critiques, compliments, and neutral statements seperate. Do not force any statements. If is fine to have one or two of these categories blank, if there is nothing genuine to say."
   )
 
   response = client.models.generate_content(
