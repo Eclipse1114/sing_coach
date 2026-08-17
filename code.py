@@ -365,7 +365,9 @@ with tab_record:
         "Record a raw vocal snippet straight from your device microphone:"
     )
 
-    notes = st.text_input("Do you have any notes, or specific questions?")
+    notes = st.text_input("Do you have any notes, or specific questions?",
+        key = "record_notes"
+        )
 
     recorded_audio = st.audio_input(
         "Record your vocals"
@@ -386,7 +388,9 @@ with tab_upload:
         "Or choose an existing audio or video file from your device:"
     )
 
-    notes = st.text_input("Do you have any notes, or specific questions?")
+    notes = st.text_input("Do you have any notes, or specific questions?",
+        key = "upload_notes"
+        )
 
     uploaded_file = st.file_uploader(
         "Choose an audio or video file",
