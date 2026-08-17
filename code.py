@@ -1,3 +1,4 @@
+
 import os
 import tempfile
 import time
@@ -42,7 +43,8 @@ if "original_audio" not in st.session_state:
 def evaluate_vocal_take(
     audio_file_path: str,
     mime_type: str = None,
-    performance_type: str = "Other"
+    performance_type: str = "Other",
+    notes: str = ""
 ) -> str:
 
     """Uploads a vocal take to Gemini and analyzes it."""
@@ -85,6 +87,9 @@ robotic pitch perfection.
 The performer has identified this performance as:
 
 {performance_type}
+
+They have also made the following notes:
+{notes}
 
 Use this context when evaluating the performance.
 
@@ -172,7 +177,9 @@ Do not force any statements.
 It is fine for one or more categories to be blank if there is
 nothing genuine to say.
 
-Do not invent things you cannot hear or determine from the recording.
+Do not invent things you cannot hear or determine from the recording such as the users exact pitch.
+
+Always assume you could be wrong. Do not state certainties.
 """
 
 
@@ -358,6 +365,8 @@ with tab_record:
         "Record a raw vocal snippet straight from your device microphone:"
     )
 
+    notes = st.text_input("Do you have any notes, or specific questions?")
+
     recorded_audio = st.audio_input(
         "Record your vocals"
     )
@@ -376,6 +385,8 @@ with tab_upload:
     st.write(
         "Or choose an existing audio or video file from your device:"
     )
+
+    notes = st.text_input("Do you have any notes, or specific questions?")
 
     uploaded_file = st.file_uploader(
         "Choose an audio or video file",
@@ -616,3 +627,4 @@ if st.session_state.feedback is not None:
                 "content": response
             }
         )
+
