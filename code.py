@@ -345,12 +345,7 @@ if audio_to_process is not None:
                 st.session_state.feedback = feedback
 
                 # Start a new conversation
-                st.session_state.messages = [
-                    {
-                        "role": "assistant",
-                        "content": feedback
-                    }
-                ]
+                st.session_state.messages = []
 
             except Exception as e:
 
