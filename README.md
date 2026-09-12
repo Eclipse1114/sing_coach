@@ -12,7 +12,3 @@ An AI-powered vocal analysis tool that analyzes your voice recording and provide
 * **AI Feedback** — Get vocal feedback powered by Gemini
 * **Harmonic Analysis** — Looks beyond simple pitch tracking
 * **Simple Uploading** — Upload a recording and get your analysis
-
-## Screenshot
-
-<img width="1679" height="845" alt="image" src="https://github.com/user-attachments/assets/e76afc32-a0d3-48d4-b768-342237669a79" />
