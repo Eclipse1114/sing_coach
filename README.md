@@ -15,4 +15,4 @@ An AI-powered vocal analysis tool that analyzes your voice recording and provide
 
 ## Screenshot
 
-<img alt="Sing Coach screenshot" src="https://github.com/user-attachments/assets/057248a0-d558-4a70-afa6-68ae65374601" />
+![Sing Coach screenshot](https://github.com/user-attachments/assets/057248a0-d558-4a70-afa6-68ae65374601)
